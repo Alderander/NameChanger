@@ -47,10 +47,10 @@ class NameChanger extends PluginBase implements Listener {
 	 */
 	public function onJoin(PlayerJoinEvent $event) {
 		if(isset($this->userNameChanged[$event->getPlayer()->getName()])) {
-			$event->getPlayer()->sendMessage(TextFormat::GREEN . "Your username has been changed to " . $event->getPlayer()->getName());
+			$event->getPlayer()->sendMessage(TextFormat::GREEN . "§dJust to let you know, Your username has been changed to§5 " . $event->getPlayer()->getName());
 			unset($this->userNameChanged[$event->getPlayer()->getName()]);
 		} else {
-			$event->getPlayer()->sendTip(TextFormat::AQUA . "Open the settings screen to switch username.");
+			$event->getPlayer()->sendMessage(TextFormat::AQUA . "§bDid you know, you can change your MCPE username in game! 1. &3Go to pause menu. 2. Go to settings. 3. Click VoidMinerPE Name changer menu 4. Enter any username you want. Then toggle on confirm custom name. And you're all done!");
 		}
 	}
 
@@ -71,7 +71,7 @@ class NameChanger extends PluginBase implements Listener {
 			}
 			$formData = (array) json_decode($packet->formData, true);
 			if(!$confirmed = $formData[2]) {
-				$event->getPlayer()->sendMessage(TextFormat::RED . "You did not click the name change confirm button.");
+				$event->getPlayer()->sendMessage(TextFormat::RED . "§2You did not click the name change confirm button.");
 				return;
 			}
 			if(strtolower($formData[1]) === $event->getPlayer()->getLowerCaseName()) {
